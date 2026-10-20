@@ -1,0 +1,13 @@
+{
+  "include": [
+    "src/**/*.coffee",
+    "index.coffee"
+  ],
+  "exclude": [
+    "test/**",
+    "node_modules/**",
+    "examples/**",
+    "bin/**"
+  ],
+  "functions": 75
+}

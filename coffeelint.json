@@ -1,0 +1,66 @@
+{
+  "_comment": [
+    "Rules are enabled only where the codebase already complies (or where a",
+    "violation is a genuine defect), so `npm run lint` is a gate that fails on",
+    "new problems instead of noise the team learns to ignore. The two `ignore`",
+    "entries below are pre-existing house style, not oversights: the project has",
+    "used double quotes since 2015 and Adapter's extension points are",
+    "intentionally empty."
+  ],
+  "max_line_length": {
+    "value": 120,
+    "level": "error",
+    "message": "Line exceeds 120 characters"
+  },
+  "no_tabs": {
+    "level": "error"
+  },
+  "no_trailing_whitespace": {
+    "level": "error"
+  },
+  "no_backticks": {
+    "level": "error"
+  },
+  "indentation": {
+    "_comment": "warn, not error: coffeelint 2.x flags the continuation lines of multi-line string concatenation, which this codebase uses to keep long messages under the line limit.",
+    "value": 2,
+    "level": "warn"
+  },
+  "space_operators": {
+    "level": "error"
+  },
+  "arrow_spacing": {
+    "level": "error"
+  },
+  "no_interpolation_in_single_quotes": {
+    "level": "error"
+  },
+  "duplicate_key": {
+    "level": "error"
+  },
+  "no_debugger": {
+    "level": "error"
+  },
+  "no_throwing_strings": {
+    "level": "error"
+  },
+  "no_unnecessary_double_quotes": {
+    "level": "ignore"
+  },
+  "no_empty_functions": {
+    "level": "ignore"
+  },
+  "line_endings": {
+    "value": "unix",
+    "level": "ignore"
+  },
+  "cyclomatic_complexity": {
+    "value": [
+      12,
+      {
+        "includeAssertFunctions": true
+      }
+    ],
+    "level": "warn"
+  }
+}

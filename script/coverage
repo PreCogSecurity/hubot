@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Run the suite under Node's built-in V8 coverage collector and enforce the
+# thresholds in .coverage.json.
+#
+# Deliberately dependency free: CoffeeScript 1.x compiles in memory, so a
+# source-instrumenting reporter cannot attribute coverage back to the .coffee
+# files. V8's own coverage output is keyed by the module URL, which is the
+# .coffee path, so it reports correctly without a new dependency.
+#
+# Kept separate from `npm test` so a developer running the suite is not forced
+# to opt into coverage.
+set -e
+
+source script/bootstrap
+
+rm -rf .coverage
+mkdir -p .coverage
+
+export NODE_V8_COVERAGE="$PWD/.coverage/raw"
+
+./script/test "$@"
+
+exec node script/coverage-report.js

@@ -1,0 +1,35 @@
+version: 2
+
+updates:
+  # Runtime dependencies ship to every consumer; patch/minor drift in a
+  # library that pins CoffeeScript 1.x needs a human to read the diff.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    labels: [dependencies]
+    commit-message:
+      prefix: 'deps'
+    groups:
+      # Patch bumps of the whole tree are noisy; review them as a batch.
+      patch:
+        applies-to: version-updates
+        update-types: [patch]
+    ignore:
+      # CoffeeScript 1.x is the authored language of this repo. Moving to 2.x
+      # changes compilation semantics and is a deliberate, separate migration.
+      - dependency-name: coffee-script
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels: [dependencies, ci]
+    commit-message:
+      prefix: 'ci'
+    groups:
+      actions:
+        patterns: ['*']

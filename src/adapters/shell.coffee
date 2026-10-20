@@ -17,7 +17,7 @@ historyPath = ".hubot_history"
 
 class Shell extends Adapter
   send: (envelope, strings...) ->
-    console.log chalk.bold("#{str}") for str in strings
+    @robot.logger.info chalk.bold("#{str}") for str in strings
 
   emote: (envelope, strings...) ->
     @send envelope, "* #{str}" for str in strings
@@ -51,7 +51,7 @@ class Shell extends Adapter
       @receive new TextMessage user, input, 'messageId'
 
     @cli.command 'history', () =>
-      console.log item for item in @cli.history()
+      @robot.logger.info item for item in @cli.history()
 
     @cli.on 'history', (item) =>
       if item.length > 0 and item isnt 'exit' and item isnt 'history'

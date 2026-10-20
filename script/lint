@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+source script/bootstrap
+
+# coffeelint walks directories recursively; it does not expand shell globs.
+exec coffeelint --file coffeelint.json src test index.coffee bin/hubot
